@@ -1,0 +1,6 @@
+.hero {
+    height: 400px;
+    background: lavender;
+    display: flex;
+    width: 100%;
+}
