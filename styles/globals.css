@@ -2,15 +2,21 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
 
 * {
   font-family: 'Montserrat', sans-serif;
 }
 
+.lobster {
+  font-family: 'Lobster', cursive;
+}
+
 body {
   background: rgb(50, 50, 50);
   color: #ededed;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 html, body, div, span, applet, object, iframe,

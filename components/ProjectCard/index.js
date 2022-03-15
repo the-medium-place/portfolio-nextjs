@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import styled from '@emotion/styled'
-import Image from 'next/image'
-
-import { Card, CardContent, CardHeader, CardMedia, Chip, Box, Avatar, Grid } from '@mui/material';
+import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import WebTwoToneIcon from '@mui/icons-material/WebTwoTone';
+import { Chip, Box, Avatar, Grid, ButtonGroup, Button } from '@mui/material';
 
 
 import logocss from '../../public/images/devlogos/logocss.png';
 import logohtml from '../../public/images/devlogos/logohtml.png';
-import logojavascript from '../../public/images/devlogos/logojavascript.png';
 import logomongodb from '../../public/images/devlogos/logomongodb.png';
 import logomongoose from '../../public/images/devlogos/logomongoose.png';
 import logomysql from '../../public/images/devlogos/logomysql.png';
@@ -42,7 +41,7 @@ function fetchAvatar(tech) {
         case 'Bootstrap':
             return logoBootstrap.src;
         default:
-            return tech[0];
+            return false;
     }
 }
 
@@ -50,12 +49,12 @@ function fetchAvatar(tech) {
 
 const StyledCardFace = styled(motion.div)`
     width: 100%;
-    height: 100%;
-    background: #ededed;
+    /*min-height: 12rem;*/
+    /*background: #ededed;*/
     border-radius: 5px;
     backface-visibility: hidden;
     position: absolute;
-    box-shadow: 0px 0px .8rem rgba(180, 180, 180, .3);
+    overflow: hidden;
 
 `
 
@@ -63,29 +62,80 @@ const StyledCardBack = styled(StyledCardFace)`
   transform: rotateY(180deg);
 `
 
-const FlipCard = styled(motion.div)`
-  width: 25vw;
-  min-height: 300px;
+const FlipCard = styled(Grid)`
+  padding: 0 12px;
   border-radius: 5px;
   perspective: 1000px;
   background: transparent;
-  margin-bottom: 30px
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
 `
 
 const FlipCardInner = styled(motion.div)`
 position: relative;
 width: 100%;
-height: 100%;
 transition: transform 0.3s;
 transform-style: preserve-3d;
 transform: rotateY(180deg);
-
 `
 
 const CardImg = styled('img')`
     width: 100%;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 8px;
+    transition: all .3s;
+`
 
+const TitleText = styled(motion.p)`
+    font-size: 1.8rem;
+    backface-visibility: hidden;
+    font-weight: bold;
+`
+
+const TaglineText = styled(motion.p)`
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: .6rem;
+    backface-visibility: hidden;
+    transition: transform 0.1s ease-in-out;
+    height: 2.4rem;
+`
+
+const StyledButton = styled(Button)`
+    background: rgb(20, 20, 20);
+    color: #ededed;
+`
+
+const ViewButton = styled(Button)`
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    font-weight: 700;
+    font-family: 'Lobster', cursive;
+    transition: transform .3s eas-in-out;
+    &:hover {
+    };
+    &:active {
+        box-shadow: none;
+    };
+`
+
+const ChipBox = styled(motion.Box)`
+padding-x: .3rem; 
+display: flex; 
+justify-content: center;
+flex-wrap: wrap;
+flex: 1;
+position: absolute;
+bottom: 0; 
+background: linear-gradient(to bottom, rgba(50, 50, 50, .6), rgba(50, 50, 50, .3));
+padding: .6rem 0;
+width: 100%;
 `
 
 export default function ProjectCard(props) {
@@ -102,44 +152,102 @@ export default function ProjectCard(props) {
         technologies
     } = props.project;
 
+    const cardRef = useRef(null);
+    const viewBtnRef = useRef(null)
+
 
     const [frontView, setFrontView] = useState(true);
+    const [hoverState, setHoverState] = useState(false)
+
+    useEffect(() => {
+        cardRef.current.focus();
+        viewBtnRef.current.focus();
+    })
+
 
     function handleHoverStart(event) {
-        setFrontView(false)
+        console.log('hovered')
+        setHoverState(true)
+        cardRef.current.style.boxShadow = `0px 0px 15px rgba(200, 200, 200, .5)`
+        viewBtnRef.current.style.boxShadow = `-4px 4px 10px rgba(50, 50, 50, .5)`
+        viewBtnRef.current.style.transform = "scale(1.2)"
+
     }
 
-    function handleHoverEnd(event) {
-        setFrontView(true);
+    function handleHoverEnd(e) {
+        console.log('stopped hover')
+        setHoverState(false)
+        cardRef.current.style.boxShadow = `none`;
+        viewBtnRef.current.style.boxShadow = `none`
+        viewBtnRef.current.style.transform = "scale(1)"
+
     }
 
     return (
-        <FlipCard
-            onHoverStart={handleHoverStart}
-            onHoverEnd={handleHoverEnd}
-            id={id}
-        >
+        <FlipCard item xs={12} md={6} onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>
+            <TitleText>
+                {title}
+            </TitleText>
+            <TaglineText
+                animate={{
+                    rotateY: frontView ? '-180deg' : '0deg'
+                }}
+            >
+                {tagline}
+            </TaglineText>
             <FlipCardInner
                 animate={{
                     rotateY: frontView ? '0deg' : '180deg'
-                }}>
-                <StyledCardFace >
-                    <CardImg src={screenshot} />
-                    <Box marginBottom="15px" display="flex" justifyContent="center" flexWrap="wrap" flex={1}>
+                }}
+            >
+                <StyledCardFace>
+                    <ViewButton variant='contained' onClick={() => { setFrontView(!frontView) }} ref={viewBtnRef}>
+                        Info
+                    </ViewButton>
+                    <CardImg src={screenshot} ref={cardRef} />
+                    <ChipBox animate={{
+                        opacity: hoverState ? '1' : '0',
+                        translateY: hoverState ? '0px' : '90px'
+
+                    }}>
                         {technologies.map(tech => {
                             return (
                                 <Chip
                                     key={tech}
                                     label={tech}
-                                    avatar={<Avatar alt={tech} src={fetchAvatar(tech)} />}
-                                    style={{ margin: 1.3 }}
+                                    avatar={<Avatar alt={tech} src={fetchAvatar(tech) || tech[0]} />}
+                                    style={{ margin: 1.3, fontSize: '.7em', background: "#ededed" }}
                                 />
                             )
                         })}
-                    </Box>
+                    </ChipBox>
                 </StyledCardFace>
                 <StyledCardBack>
-                    <div style={{ height: '100%', width: '100%', padding: '.6rem' }}>BACKSIDE TEST</div>
+                    <Box padding=".3rem" display="flex" flexDirection={`column`}>
+                        <p style={{ lineHeight: '1.2rem' }}>
+                            {description}
+                        </p>
+                        <hr style={{ width: '100%' }} />
+                        <ButtonGroup size="large" aria-label="outlined primary button group" style={{ margin: '0 auto' }}>
+                            <StyledButton
+                                startIcon={<WebTwoToneIcon />}
+                                href={deployed}
+                                target="_blank"
+                                variant="contained"
+                            >
+                                Live App
+                            </StyledButton>
+                            <StyledButton
+                                startIcon={<AccountTreeTwoToneIcon />}
+                                href={github}
+                                target="_blank"
+                                variant="contained"
+                            >
+                                Git Repo
+                            </StyledButton>
+                        </ButtonGroup>
+                    </Box>
+                    <Button variant='contained' onClick={() => { setFrontView(!frontView) }}>&larr; Flip Back</Button>
                 </StyledCardBack>
             </FlipCardInner>
         </FlipCard>

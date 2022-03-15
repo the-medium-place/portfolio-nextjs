@@ -6,7 +6,7 @@ const projects = [
   //   deployed: "http://the-medium-place.github.io/weather-dashboard",
   //   description: "An application allowing a user to search by city for current weather conditions and the 5-day forecast. This project utilizes 'jQuery' AJAX calls on a simble BootStrap grid to populate the weather and map data.",
   //   title: "Weather Dashboard",
-  //   technologies: "'HTML5', 'CSS3', 'jQuery', Bootstrap"
+  //   technologies: "'jQuery', Bootstrap"
   // },
   // {
   //   id: "workdayscheduler",
@@ -14,7 +14,7 @@ const projects = [
   //   deployed: "https://the-medium-place.github.io/work-day-scheduler/",
   //   description: "This application utilizes local storage to save the user inputs in text fields which change color to follow the time of day (but only during work hours!)",
   //   title: "Workday Scheduler",
-  //technologies: "'HTML5', 'CSS3'"
+  //technologies: "'CSS3'"
 
   // },
 
@@ -33,7 +33,7 @@ const projects = [
   //   deployed: "https://the-medium-place.github.io/code-quiz/",
   //   description: "The Ninja Turtles Quiz is retro-themed quiz game. When the start button is pressed the user is presented with a series of knowledge questions about the Teenage Mutant Ninja Turtles!",
   //   title: "Ninja Turtles Quiz",
-  // technologies: "'HTML5', 'CSS3', 'jQuery', Bootstrap"
+  // technologies: "'jQuery', Bootstrap"
 
   // },
   // {
@@ -60,7 +60,7 @@ const projects = [
   //   deployed: "https://kinda-good-burger.herokuapp.com/",
   //   description: "Make a list of all the burger's you would want to eat! Then, with the click of a button you can place the burger on your list of 'Burger Conquests'. This app utilizes 'Handlebars JS' for rendering and 'MySQL' for the database. I appreciated how this assignment didn't pretend to be anything useful. It's just a burger list.",
   //   title: "Burger Listing",
-  // technologies: "'HTML5', 'CSS3', 'Node.js', 'Express JS', 'MySQL'"
+  // technologies: "'Node.js', 'Express JS', 'MySQL'"
 
   // },
   {
@@ -71,7 +71,7 @@ const projects = [
     title: "BCS Data Viewer",
     tagline: "Made for the teachers...",
     screenshot: "https://i.imgur.com/AljzAOJ.png",
-    technologies: ['Node.js', 'Express JS', 'React JS', 'MongoDB', 'Mongoose', 'GraphQL', 'HTML5', 'CSS3', 'Bootstrap']
+    technologies: ['Node.js', 'Express JS', 'React JS', 'MongoDB', 'Mongoose', 'GraphQL', 'Bootstrap']
   },
 
   {
@@ -83,21 +83,21 @@ const projects = [
     title: "Mark-It",
     tagline: "Farm-to-market-to-internet-database...",
     screenshot: 'https://i.imgur.com/rcTeF3S.jpg',
-    technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'HTML5', 'CSS3', 'Bulma CSS']
+    technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'Bulma CSS']
 
   },
-  {
-    id: "crudposting",
-    github: "https://github.com/the-medium-place/personal-blog-front",
-    deployed: "https://zgs-personal-blog-frontend.herokuapp.com/crudposting",
-    description: "Welcome to my personal blog and portfolio combo application! The blog-side is a fully CRUD-functional CMS that is directly connected to this portfolio site! click the menu above or the button below to visit the homepage and catch up on my programming journey, or random musings!",
-    // "This full-stack application provides a way for users to search for local farmer's markets as well as create a vendor profile which allows the user to list and sell products - creating a way for consumers to get their farmer's market shopping done at a safe 'social distance'.  Items created appear on the app's map function, and users can favorite a vendor, item or market and have it appear on their profile page.",
-    title: "Personal Blog",
-    tagline: "Scratch-made CMS Blog!",
-    screenshot: 'https://i.imgur.com/xSI1Rjh.png',
-    technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'HTML5', 'CSS3', 'Material UI']
+  // {
+  //   id: "crudposting",
+  //   github: "https://github.com/the-medium-place/personal-blog-front",
+  //   deployed: "https://zgs-personal-blog-frontend.herokuapp.com/crudposting",
+  //   description: "Welcome to my personal blog and portfolio combo application! The blog-side is a fully CRUD-functional CMS that is directly connected to this portfolio site! click the menu above or the button below to visit the homepage and catch up on my programming journey, or random musings!",
+  //   // "This full-stack application provides a way for users to search for local farmer's markets as well as create a vendor profile which allows the user to list and sell products - creating a way for consumers to get their farmer's market shopping done at a safe 'social distance'.  Items created appear on the app's map function, and users can favorite a vendor, item or market and have it appear on their profile page.",
+  //   title: "Personal Blog",
+  //   tagline: "Scratch-made CMS Blog!",
+  //   screenshot: 'https://i.imgur.com/xSI1Rjh.png',
+  //   technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'Material UI']
 
-  },
+  // },
 
 
   // {
@@ -106,7 +106,7 @@ const projects = [
   //   deployed: "https://infinite-gorge-44449.herokuapp.com/",
   //   description: "This application utilized the Random User API to create a table of fake employees. The front-end is built with ReactJS and allows the user to organize the resultant employees by Name or Location as well as to search the employees by any data with real-time results.",
   //   title: "Employee Organizer",
-  // technologies: "'Node.js', 'Express JS', 'React JS', 'HTML5', 'CSS3'"
+  // technologies: "'Node.js', 'Express JS', 'React JS', 'CSS3'"
 
   // }
   {
@@ -117,20 +117,20 @@ const projects = [
     title: "To-Gather",
     tagline: "Get people together, Help them ToGather...",
     screenshot: 'https://i.imgur.com/tj8sCI5.jpg',
-    technologies: ['HTML5', 'CSS3', 'Node.js', 'Sequelize', 'MySQL', 'Handlebars JS', 'Express JS', 'Foundation CSS']
+    technologies: ['Node.js', 'Sequelize', 'MySQL', 'Handlebars JS', 'Express JS', 'Foundation CSS']
 
   },
-  {
-    id: "googlebooks",
-    github: "https://github.com/the-medium-place/google-books-search",
-    deployed: "https://awesome-google-books-react.herokuapp.com/",
-    description: "This Full-Stack (MERN) application uses 'React JS' and 'MongoDB', 'Mongoose', allowing a user to search the Google Books API, and save any results to a list that is displayed on the 'Saved' page. The user can also delete books from this list giving the app CR-D functionality.",
-    title: "Google Books Search",
-    tagline: "Simple but elegant book search...",
-    screenshot: 'https://i.imgur.com/JWLfCey.png',
-    technologies: ['MongoDB', 'Mongoose', 'Express JS', 'React JS', 'Node.js', 'HTML5', 'CSS3']
+  // {
+  //   id: "googlebooks",
+  //   github: "https://github.com/the-medium-place/google-books-search",
+  //   deployed: "https://awesome-google-books-react.herokuapp.com/",
+  //   description: "This Full-Stack (MERN) application uses 'React JS' and 'MongoDB', 'Mongoose', allowing a user to search the Google Books API, and save any results to a list that is displayed on the 'Saved' page. The user can also delete books from this list giving the app CR-D functionality.",
+  //   title: "Google Books Search",
+  //   tagline: "Simple but elegant book search...",
+  //   screenshot: 'https://i.imgur.com/JWLfCey.png',
+  //   technologies: ['MongoDB', 'Mongoose', 'Express JS', 'React JS', 'Node.js', 'CSS3']
 
-  },
+  // },
   {
     id: "fitnessmonkey",
     github: "https://github.com/the-medium-place/fitness-tracker",
@@ -139,7 +139,7 @@ const projects = [
     title: "Fitness Monkey",
     tagline: 'Stay fit... no monkey business!',
     screenshot: "https://i.imgur.com/hlZdCTl.png",
-    technologies: ['HTML5', 'CSS3', 'MongoDB', 'Mongoose', 'Express JS', 'Handlebars JS', 'Node.js']
+    technologies: ['MongoDB', 'Mongoose', 'Express JS', 'Handlebars JS', 'Node.js']
 
   },
   // {
@@ -150,7 +150,7 @@ const projects = [
   //   title: "Social // Distance",
   //   tagline: "There's good news AND bad news...",
   //   screenshot: 'https://i.imgur.com/m4b4xIC.jpg',
-  //   technologies: ['HTML5', 'CSS3', 'jQuery', 'Skeleton Framework']
+  //   technologies: ['jQuery', 'Skeleton Framework']
   // },
   // {
   //   id: "phpcmsblog",

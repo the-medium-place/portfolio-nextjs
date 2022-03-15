@@ -1,11 +1,16 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Footer from '../containers/Footer'
 import Hero from '../containers/Hero'
 import { useRef } from 'react'
-import ProjectCard from '../components/ProjectCard'
-import projects from '../utils/projects'
+import styled from '@emotion/styled'
+import Projects from '../containers/Projects'
+
+const Spacer = styled('div')`
+  width: 85%;
+  border: 1px solid #ededed;
+  margin: 8vh auto;
+`
 
 
 export default function Home() {
@@ -20,28 +25,12 @@ export default function Home() {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Zac Stowell Codes</title>
         </Head>
-        <Hero />
         <main className={styles.main}>
+          {/* <Hero id="hero" /> */}
+          <Spacer />
+          <Projects />
 
-          <section
-            style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              padding: '1.5rem',
-              marginBottom: 60,
-              minHeight: 800,
-              flexWrap: 'wrap'
-            }}
-            ref={constraintsRef}
-            id="projects"
-          >
 
-            {projects.map((project) => {
-              return (
-                <ProjectCard project={project} key={project.id} />
-              )
-            })}
-          </section>
         </main>
 
       </div>
