@@ -2,7 +2,6 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Footer from '../containers/Footer'
 import Hero from '../containers/Hero'
-import { useRef } from 'react'
 import styled from '@emotion/styled'
 import Projects from '../containers/Projects'
 
@@ -14,7 +13,6 @@ const Spacer = styled('div')`
 
 
 export default function Home() {
-  const constraintsRef = useRef(null)
 
 
   return (
