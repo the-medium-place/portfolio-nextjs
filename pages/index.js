@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <div className={styles.container}>
         <Head>
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Zac Stowell Codes</title>

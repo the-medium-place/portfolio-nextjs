@@ -13,6 +13,9 @@
     transform-style: preserve-3d;
     padding-top: 5%;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .name {
