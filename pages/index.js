@@ -16,6 +16,7 @@ const Spacer = styled('div')`
 export default function Home() {
   const constraintsRef = useRef(null)
 
+
   return (
     <>
       <div className={styles.container}>
@@ -26,7 +27,7 @@ export default function Home() {
           <title>Zac Stowell Codes</title>
         </Head>
         <main className={styles.main}>
-          {/* <Hero id="hero" /> */}
+          <Hero id="hero" />
           <Spacer />
           <Projects />
 

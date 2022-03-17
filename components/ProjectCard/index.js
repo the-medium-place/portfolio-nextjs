@@ -41,7 +41,7 @@ function fetchAvatar(tech) {
         case 'Bootstrap':
             return logoBootstrap.src;
         default:
-            return false;
+            return tech[0];
     }
 }
 
@@ -63,16 +63,14 @@ const StyledCardBack = styled(StyledCardFace)`
 `
 
 const FlipCard = styled(Grid)`
-  padding: 0 12px;
   border-radius: 5px;
   perspective: 1000px;
   background: transparent;
   position: relative;
-  min-height: 600px;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  flex: 1;
 `
 
 const FlipCardInner = styled(motion.div)`
@@ -117,15 +115,10 @@ const ViewButton = styled(Button)`
     aspect-ratio: 1/1;
     font-weight: 700;
     font-family: 'Lobster', cursive;
-    transition: transform .3s eas-in-out;
-    &:hover {
-    };
-    &:active {
-        box-shadow: none;
-    };
+    transition: transform .1s;
 `
 
-const ChipBox = styled(motion.Box)`
+const ChipBox = styled(motion.div)`
 padding-x: .3rem; 
 display: flex; 
 justify-content: center;
@@ -140,7 +133,6 @@ width: 100%;
 
 export default function ProjectCard(props) {
 
-    // console.log(props)
     const {
         id,
         github,
@@ -185,29 +177,31 @@ export default function ProjectCard(props) {
 
     return (
         <FlipCard item xs={12} md={6} onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>
-            <TitleText>
-                {title}
-            </TitleText>
-            <TaglineText
-                animate={{
-                    rotateY: frontView ? '-180deg' : '0deg'
-                }}
-            >
-                {tagline}
-            </TaglineText>
+            <div style={{ position: 'absolute', background: 'rgb(50, 50, 50)', zIndex: 100, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
+                <TitleText>
+                    {title}
+                </TitleText>
+                <TaglineText
+                    animate={{
+                        rotateY: frontView ? '-180deg' : '0deg'
+                    }}
+                >
+                    {tagline}
+                </TaglineText>
+            </div>
             <FlipCardInner
                 animate={{
                     rotateY: frontView ? '0deg' : '180deg'
                 }}
             >
                 <StyledCardFace>
-                    <ViewButton variant='contained' onClick={() => { setFrontView(!frontView) }} ref={viewBtnRef}>
-                        Info
+                    <ViewButton color='error' variant='contained' onClick={() => { setFrontView(!frontView) }} ref={viewBtnRef}>
+                        More<br />Info
                     </ViewButton>
                     <CardImg src={screenshot} ref={cardRef} />
                     <ChipBox animate={{
-                        opacity: hoverState ? '1' : '0',
-                        translateY: hoverState ? '0px' : '90px'
+                        // opacity: frontView && hoverState ? '1' : '0',
+                        translateY: frontView && hoverState ? '0px' : '100%'
 
                     }}>
                         {technologies.map(tech => {
@@ -215,7 +209,7 @@ export default function ProjectCard(props) {
                                 <Chip
                                     key={tech}
                                     label={tech}
-                                    avatar={<Avatar alt={tech} src={fetchAvatar(tech) || tech[0]} />}
+                                    avatar={<Avatar alt={tech} src={fetchAvatar(tech)} />}
                                     style={{ margin: 1.3, fontSize: '.7em', background: "#ededed" }}
                                 />
                             )
@@ -247,7 +241,7 @@ export default function ProjectCard(props) {
                             </StyledButton>
                         </ButtonGroup>
                     </Box>
-                    <Button variant='contained' onClick={() => { setFrontView(!frontView) }}>&larr; Flip Back</Button>
+                    <Button variant='contained' style={{ zIndex: 100 }} onClick={() => { setFrontView(!frontView) }}>&larr; Flip Back</Button>
                 </StyledCardBack>
             </FlipCardInner>
         </FlipCard>
