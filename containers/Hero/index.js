@@ -34,7 +34,6 @@ export default function Hero() {
                         rotateY: `${-(percentX / 5)}deg`,
                         rotateX: `${15 - percentY / 3}deg`
                     }}
-                    style={{ display: 'flex', flexDirection: `${width < 900 ? 'column-reverse' : 'row'}` }}
                 >
                     <Grid
                         item xs={12}
