@@ -40,7 +40,7 @@ export default function Hero() {
                         md={6}
                         component={motion.div}
                         animate={{
-                            rotateY: `-${percentX / 2}deg`,
+                            rotateY: `${-(percentX / 2)}deg`,
                             rotateX: `${15 - percentY / 3}deg`
                         }}
                         display="flex"
@@ -56,7 +56,7 @@ export default function Hero() {
                         className={styles.nameWrapper}
                         component={motion.div}
                         animate={{
-                            rotateY: `-${percentX / 2}deg`,
+                            rotateY: `${-(percentX / 2)}deg`,
                             rotateX: `${15 - percentY / 3}deg`
                         }}
                     >

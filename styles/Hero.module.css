@@ -16,7 +16,7 @@
 }
 
 .name {
-    display: inline-block;
+    display: block;
     font-size: 9.5vw;
     font-weight: 900;
     text-align: right;

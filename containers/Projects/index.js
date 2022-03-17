@@ -11,7 +11,7 @@ export default function Projects() {
     return (
         <Grid
             container
-            spacing={3}
+            // spacing={3}
             id="projects"
             display={'flex'}
             minHeight={350}

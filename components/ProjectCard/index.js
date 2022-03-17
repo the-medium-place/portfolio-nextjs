@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import WebTwoToneIcon from '@mui/icons-material/WebTwoTone';
 import { Chip, Box, Avatar, Grid, ButtonGroup, Button } from '@mui/material';
+import useWindowDimensions from '../../utils/hooks/WindowDimensions';
 
 
 import logocss from '../../public/images/devlogos/logocss.png';
@@ -85,9 +86,10 @@ transform: rotateY(180deg);
 `
 
 const CardImg = styled('img')`
-    width: 100%;
+    width: 90%;
     border-radius: 8px;
     transition: all .3s;
+    margin: 0 auto;
 `
 
 const TitleText = styled(motion.p)`
@@ -146,6 +148,9 @@ width: 100%;
 
 export default function ProjectCard(props) {
 
+    const { width, height } = useWindowDimensions();
+
+
     const {
         id,
         github,
@@ -173,7 +178,7 @@ export default function ProjectCard(props) {
     function handleHoverStart(event) {
         console.log('hovered')
         setHoverState(true)
-        cardRef.current.style.boxShadow = `0px 0px 15px rgba(200, 200, 200, .5)`
+        // cardRef.current.style.boxShadow = `0px 0px 15px rgba(200, 200, 200, .5)`
         viewBtnRef.current.style.boxShadow = `-4px 4px 10px rgba(50, 50, 50, .5)`
         viewBtnRef.current.style.transform = "scale(1.2)"
 
@@ -182,7 +187,7 @@ export default function ProjectCard(props) {
     function handleHoverEnd(e) {
         console.log('stopped hover')
         setHoverState(false)
-        cardRef.current.style.boxShadow = `none`;
+        // cardRef.current.style.boxShadow = `none`;
         viewBtnRef.current.style.boxShadow = `none`
         viewBtnRef.current.style.transform = "scale(1)"
 
@@ -199,7 +204,17 @@ export default function ProjectCard(props) {
     }
 
     return (
-        <FlipCard item xs={12} md={6} onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>
+        <FlipCard
+            item
+            id={id}
+            xs={12}
+            md={6}
+            onMouseEnter={handleHoverStart}
+            onMouseLeave={handleHoverEnd}
+            style={{
+                height: width > 900 ? '30vw' : '70vw'
+            }}
+        >
             <TitleText
                 animate={{
                     opacity: frontView ? 1 : 0,
@@ -271,7 +286,7 @@ export default function ProjectCard(props) {
                             </StyledButton>
                         </ButtonGroup>
                     </Box>
-                    <Button variant='contained' color="info" style={{ zIndex: 110, fontWeight: 900, marginTop: '3%' }} onClick={() => { setFrontView(!frontView) }}>&larr; Return</Button>
+                    <Button variant='contained' color="info" style={{ zIndex: 110, fontWeight: 900, marginTop: '3%', width: '85%', margin: '10px auto' }} onClick={() => { setFrontView(!frontView) }}>&larr; Return</Button>
                 </StyledCardBack>
             </FlipCardInner>
         </FlipCard>
