@@ -55,11 +55,15 @@ const StyledCardFace = styled(motion.div)`
     backface-visibility: hidden;
     position: absolute;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
 `
 
 const StyledCardBack = styled(StyledCardFace)`
   transform: rotateY(180deg);
+  position: relative;
 `
 
 const FlipCard = styled(Grid)`
@@ -67,7 +71,6 @@ const FlipCard = styled(Grid)`
   perspective: 1000px;
   background: transparent;
   position: relative;
-  min-height: 450px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -91,6 +94,15 @@ const TitleText = styled(motion.p)`
     font-size: 1.8rem;
     backface-visibility: hidden;
     font-weight: bold;
+    position: absolute;
+    top: 5%;
+    z-index: 100;
+    padding: .6rem;
+    background: rgba(50, 50, 50, .3);
+    border-radius: 5px;
+    transition: opacity .3s;
+    transform: rotate(-5deg);
+
 `
 
 const TaglineText = styled(motion.p)`
@@ -105,6 +117,7 @@ const TaglineText = styled(motion.p)`
 const StyledButton = styled(Button)`
     background: rgb(20, 20, 20);
     color: #ededed;
+    z-index: 110;
 `
 
 const ViewButton = styled(Button)`
@@ -115,7 +128,7 @@ const ViewButton = styled(Button)`
     aspect-ratio: 1/1;
     font-weight: 700;
     font-family: 'Lobster', cursive;
-    transition: transform .1s;
+    transition: display .1s;
 `
 
 const ChipBox = styled(motion.div)`
@@ -175,20 +188,34 @@ export default function ProjectCard(props) {
 
     }
 
+    function setTitleDisplay() {
+        if (frontView) {
+            return 'block'
+        } else {
+            // setTimeout(() => {
+            return 'none'
+            // }, 300);
+        }
+    }
+
     return (
         <FlipCard item xs={12} md={6} onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>
-            <div style={{ position: 'absolute', background: 'rgb(50, 50, 50)', zIndex: 100, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
-                <TitleText>
-                    {title}
-                </TitleText>
-                <TaglineText
+            <TitleText
+                animate={{
+                    opacity: frontView ? 1 : 0,
+                    background: `rgba(50, 50, 50, ${hoverState ? '.9' : '.4'})`
+                    // display: setTitleDisplay()
+                }}
+            >
+                {title}
+            </TitleText>
+            {/* <TaglineText
                     animate={{
                         rotateY: frontView ? '-180deg' : '0deg'
                     }}
                 >
                     {tagline}
-                </TaglineText>
-            </div>
+                </TaglineText> */}
             <FlipCardInner
                 animate={{
                     rotateY: frontView ? '0deg' : '180deg'
@@ -218,6 +245,9 @@ export default function ProjectCard(props) {
                 </StyledCardFace>
                 <StyledCardBack>
                     <Box padding=".3rem" display="flex" flexDirection={`column`}>
+                        <TaglineText>
+                            {tagline}
+                        </TaglineText>
                         <p style={{ lineHeight: '1.2rem' }}>
                             {description}
                         </p>
@@ -241,7 +271,7 @@ export default function ProjectCard(props) {
                             </StyledButton>
                         </ButtonGroup>
                     </Box>
-                    <Button variant='contained' style={{ zIndex: 100 }} onClick={() => { setFrontView(!frontView) }}>&larr; Flip Back</Button>
+                    <Button variant='contained' color="info" style={{ zIndex: 110, fontWeight: 900, marginTop: '3%' }} onClick={() => { setFrontView(!frontView) }}>&larr; Return</Button>
                 </StyledCardBack>
             </FlipCardInner>
         </FlipCard>
