@@ -11,14 +11,12 @@ export default function Projects() {
     return (
         <Grid
             container
-            // spacing={3}
             id="projects"
             display={'flex'}
-            minHeight={350}
-            width='75vw'
+            width='100%'
+            spacing={3}
             alignItems={'center'}
-            justifyContent={'center'}
-        // flexWrap={'wrap'}
+            justifyContent={'space-around'}
         >
 
             {projects.map((project) => {

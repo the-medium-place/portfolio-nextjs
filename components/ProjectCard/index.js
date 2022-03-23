@@ -50,8 +50,6 @@ function fetchAvatar(tech) {
 
 const StyledCardFace = styled(motion.div)`
     width: 100%;
-    /*min-height: 12rem;*/
-    /*background: #ededed;*/
     border-radius: 5px;
     backface-visibility: hidden;
     position: absolute;
@@ -60,11 +58,12 @@ const StyledCardFace = styled(motion.div)`
     flex-direction: column;
     justify-content: center;
 
+
 `
 
 const StyledCardBack = styled(StyledCardFace)`
   transform: rotateY(180deg);
-  position: relative;
+  position: absolute;
 `
 
 const FlipCard = styled(Grid)`
@@ -73,20 +72,33 @@ const FlipCard = styled(Grid)`
   background: transparent;
   position: relative;
   display: flex;
+  padding: 12px;
+  height: 400px;
   flex-direction: column;
   align-items: stretch;
+  @media (min-width: 900px) {
+      width: 90%;
+      margin: 0 auto;
+  }
+  @media (min-width: 1200px) {
+      width: 80%;
+      margin: 0 auto 13vw auto;
+
+  }
 `
 
 const FlipCardInner = styled(motion.div)`
-position: relative;
+position: absolute;
 width: 100%;
+height: 100%;
 transition: transform 0.3s;
 transform-style: preserve-3d;
 transform: rotateY(180deg);
 `
 
 const CardImg = styled('img')`
-    width: 90%;
+    width: 80%;
+    height: 80%;
     border-radius: 8px;
     transition: all .3s;
     margin: 0 auto;
@@ -122,7 +134,7 @@ const StyledButton = styled(Button)`
     z-index: 110;
 `
 
-const ViewButton = styled(Button)`
+const ViewButton = styled(motion.button)`
     position: absolute;
     top: 3%;
     right: 5%;
@@ -131,6 +143,10 @@ const ViewButton = styled(Button)`
     font-weight: 700;
     font-family: 'Lobster', cursive;
     transition: display .1s;
+    background: red;
+    color: white;
+    border: .4rem solid red;
+    z-index: 110;
 `
 
 const ChipBox = styled(motion.div)`
@@ -178,29 +194,11 @@ export default function ProjectCard(props) {
     function handleHoverStart(event) {
         console.log('hovered')
         setHoverState(true)
-        // cardRef.current.style.boxShadow = `0px 0px 15px rgba(200, 200, 200, .5)`
-        viewBtnRef.current.style.boxShadow = `-4px 4px 10px rgba(50, 50, 50, .5)`
-        viewBtnRef.current.style.transform = "scale(1.2)"
-
     }
 
     function handleHoverEnd(e) {
         console.log('stopped hover')
         setHoverState(false)
-        // cardRef.current.style.boxShadow = `none`;
-        viewBtnRef.current.style.boxShadow = `none`
-        viewBtnRef.current.style.transform = "scale(1)"
-
-    }
-
-    function setTitleDisplay() {
-        if (frontView) {
-            return 'block'
-        } else {
-            // setTimeout(() => {
-            return 'none'
-            // }, 300);
-        }
     }
 
     return (
@@ -211,40 +209,36 @@ export default function ProjectCard(props) {
             md={6}
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
-            style={{
-                height: width > 900 ? '30vw' : '70vw'
-            }}
         >
             <TitleText
                 animate={{
                     opacity: frontView ? 1 : 0,
                     background: `rgba(50, 50, 50, ${hoverState ? '.9' : '.4'})`
-                    // display: setTitleDisplay()
                 }}
             >
                 {title}
             </TitleText>
-            {/* <TaglineText
-                    animate={{
-                        rotateY: frontView ? '-180deg' : '0deg'
-                    }}
-                >
-                    {tagline}
-                </TaglineText> */}
             <FlipCardInner
                 animate={{
                     rotateY: frontView ? '0deg' : '180deg'
                 }}
             >
                 <StyledCardFace>
-                    <ViewButton color='error' variant='contained' onClick={() => { setFrontView(!frontView) }} ref={viewBtnRef}>
+                    <ViewButton
+                        color='error'
+                        variant='contained'
+                        onClick={() => { setFrontView(!frontView) }}
+                        ref={viewBtnRef}
+                        animate={{
+                            boxShadow: hoverState ? '-4px 4px 10px rgba(50, 50, 50, .5)' : 'none',
+                            transform: hoverState ? 'scale(1.2)' : 'scale(1)'
+                        }}
+                    >
                         More<br />Info
                     </ViewButton>
                     <CardImg src={screenshot} ref={cardRef} />
                     <ChipBox animate={{
-                        // opacity: frontView && hoverState ? '1' : '0',
                         translateY: frontView && hoverState ? '0px' : '100%'
-
                     }}>
                         {technologies.map(tech => {
                             return (
@@ -252,14 +246,14 @@ export default function ProjectCard(props) {
                                     key={tech}
                                     label={tech}
                                     avatar={<Avatar alt={tech} src={fetchAvatar(tech)} />}
-                                    style={{ margin: 1.3, fontSize: '.7em', background: "#ededed" }}
+                                    style={{ margin: width > 1200 ? 1.3 : .8, fontSize: width > 1200 ? '.7em' : '.4em', background: "#ededed" }}
                                 />
                             )
                         })}
                     </ChipBox>
                 </StyledCardFace>
                 <StyledCardBack>
-                    <Box padding=".3rem" display="flex" flexDirection={`column`}>
+                    <Box padding=".3rem" display="flex" flexDirection={`column`} maxHeight={`100%`} overflowY='auto' >
                         <TaglineText>
                             {tagline}
                         </TaglineText>
@@ -267,12 +261,11 @@ export default function ProjectCard(props) {
                             {description}
                         </p>
                         <hr style={{ width: '100%' }} />
-                        <ButtonGroup size="large" aria-label="outlined primary button group" style={{ margin: '0 auto' }}>
+                        <ButtonGroup variant='outlined' size="small" aria-label="outlined primary button group" style={{ margin: '0 auto' }}>
                             <StyledButton
                                 startIcon={<WebTwoToneIcon />}
                                 href={deployed}
                                 target="_blank"
-                                variant="contained"
                             >
                                 Live App
                             </StyledButton>
@@ -280,7 +273,6 @@ export default function ProjectCard(props) {
                                 startIcon={<AccountTreeTwoToneIcon />}
                                 href={github}
                                 target="_blank"
-                                variant="contained"
                             >
                                 Git Repo
                             </StyledButton>
