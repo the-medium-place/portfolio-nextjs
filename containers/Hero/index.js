@@ -32,8 +32,8 @@ export default function Hero() {
     const { x, y } = useMousePosition(heroRef);
     const { width, height } = useWindowDimensions();
 
-    const percentX = Math.round(50 - ((x / width) * 100));
-    const percentY = Math.round(((y / height) * 100))
+    const percentX = x ? Math.round(50 - ((x / width) * 100)) : 0;
+    const percentY = y ? Math.round(((y / height) * 100)) : 0;
 
     // console.log({ percentX, percentY })
 
@@ -60,7 +60,8 @@ export default function Hero() {
                         sm={6}
                         className={styles.nameWrapper}
                         component={motion.div}
-
+                        display="flex"
+                        flexDirection="column"
                         animate={{
                             rotateY: `${-(percentX / 2)}deg`,
                             rotateX: `${15 - percentY / 3}deg`
@@ -92,22 +93,27 @@ export default function Hero() {
 
                         That's me! I'm Zac Stowell. I love puzzles and problem solving. I love to code.
                     </p>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                        {devLogos.map((img) => {
-                            return (
-                                <div
-                                    style={{
-                                        height: '100%',
-                                        width: '10%',
-                                        display: 'flex',
-                                        flexDirection: 'column', justifyContent: 'center', transformStyle: 'preserve-3d', perspective: '1000px',
-                                        overflow: 'hidden'
-                                    }}
-                                >
-                                    <img src={img.image.src} style={{ width: '100%', }} />
-                                </div>
-                            )
-                        })}
+                    <div >
+                        <p style={{ fontSize: '115%', padding: "1.8em" }}>
+                            I've used these:
+                        </p>
+                        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                            {devLogos.map((img) => {
+                                return (
+                                    <div
+                                        style={{
+                                            height: '100%',
+                                            width: '10%',
+                                            display: 'flex',
+                                            flexDirection: 'column', justifyContent: 'center', transformStyle: 'preserve-3d', perspective: '1000px',
+                                            overflow: 'hidden'
+                                        }}
+                                    >
+                                        <img src={img.image.src} style={{ width: '100%', }} />
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

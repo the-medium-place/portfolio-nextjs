@@ -4,6 +4,8 @@ import Footer from '../containers/Footer'
 import Hero from '../containers/Hero'
 import styled from '@emotion/styled'
 import Projects from '../containers/Projects'
+import NavBar from '../containers/NavBar'
+import Contact from '../containers/Contact'
 
 const Spacer = styled('div')`
   width: 85%;
@@ -25,9 +27,13 @@ export default function Home() {
           <title>Zac Stowell Codes</title>
         </Head>
         <main className={styles.main}>
+          <NavBar />
           <Hero id="hero" />
           <Spacer />
           <Projects />
+          <Spacer />
+          <Contact />
+          <Spacer />
 
 
         </main>

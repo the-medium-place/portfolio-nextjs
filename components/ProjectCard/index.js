@@ -78,11 +78,11 @@ const FlipCard = styled(Grid)`
   align-items: stretch;
   @media (min-width: 900px) {
       width: 90%;
-      margin: 0 auto;
+      margin: 0 auto auto auto;
   }
   @media (min-width: 1200px) {
       width: 80%;
-      margin: 0 auto 13vw auto;
+      margin: 0 auto auto auto;
 
   }
 `
@@ -230,7 +230,7 @@ export default function ProjectCard(props) {
                         onClick={() => { setFrontView(!frontView) }}
                         ref={viewBtnRef}
                         animate={{
-                            boxShadow: hoverState ? '-4px 4px 10px rgba(50, 50, 50, .5)' : 'none',
+                            boxShadow: hoverState ? '-4px 4px 10px rgba(50, 50, 50, .5)' : '0px 0px 0px rgba(0, 0, 0, 0)',
                             transform: hoverState ? 'scale(1.2)' : 'scale(1)'
                         }}
                     >
