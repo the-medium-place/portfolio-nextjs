@@ -15,13 +15,13 @@ import logosequelize from '../../public/images/devlogos/logosequelize.png';
 import logoGraphQL from '../../public/images/devlogos/logoGraphQL.png';
 
 const devLogos = [
+    { image: logoreact, name: 'ReactJS' },
+    { image: logonode, name: 'Node.js' },
     { image: logomongodb, name: 'MongoDB' },
     { image: logomongoose, name: 'Mongoose' },
     { image: logomysql, name: 'MySQL' },
     { image: logosequelize, name: 'Sequelize' },
-    { image: logoreact, name: 'ReactJS' },
     { image: logoGraphQL, name: 'GraphQL' },
-    { image: logonode, name: 'Node.js' }
 ]
 
 console.log(styles)
@@ -50,8 +50,8 @@ export default function Hero() {
                     component={motion.div}
                     style={{ flexDirection: 'row' }}
                     animate={{
-                        rotateY: `${-(percentX / 5)}deg`,
-                        rotateX: `${15 - percentY / 3}deg`
+                        rotateY: `${-(percentX / 3)}deg`,
+                        rotateX: `${15 - percentY / 2}deg`
                     }}
                 >
                     <Grid
