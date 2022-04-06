@@ -64,6 +64,8 @@ const StyledCardFace = styled(motion.div)`
 const StyledCardBack = styled(StyledCardFace)`
   transform: rotateY(180deg);
   position: absolute;
+  align-items: center;
+  height: 100%;
 `
 
 const FlipCard = styled(Grid)`
@@ -72,10 +74,10 @@ const FlipCard = styled(Grid)`
   background: transparent;
   position: relative;
   display: flex;
-  padding: 12px;
   height: 400px;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   @media (min-width: 900px) {
       width: 90%;
       margin: 0 auto auto auto;
@@ -109,14 +111,13 @@ const TitleText = styled(motion.p)`
     backface-visibility: hidden;
     font-weight: bold;
     position: absolute;
-    top: 5%;
+    top: 12%;
     z-index: 100;
     padding: .6rem;
-    background: rgba(50, 50, 50, .3);
+    background: #ededed;
+    color: rgb(50,50,50);
     border-radius: 5px;
     transition: opacity .3s;
-    transform: rotate(-5deg);
-
 `
 
 const TaglineText = styled(motion.p)`
@@ -142,7 +143,7 @@ const ViewButton = styled(motion.button)`
     aspect-ratio: 1/1;
     font-weight: 700;
     font-family: 'Lobster', cursive;
-    transition: display .1s;
+    transition: all .1s ease-in-out;
     background: red;
     color: white;
     border: .4rem solid red;
@@ -205,15 +206,15 @@ export default function ProjectCard(props) {
         <FlipCard
             item
             id={id}
-            xs={12}
+            sm={12}
             md={6}
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
         >
             <TitleText
                 animate={{
-                    opacity: frontView ? 1 : 0,
-                    background: `rgba(50, 50, 50, ${hoverState ? '.9' : '.4'})`
+                    opacity: frontView && hoverState ? 1 : 0,
+                    // background: `rgba(50, 50, 50, ${hoverState ? '.9' : '.4'})`
                 }}
             >
                 {title}

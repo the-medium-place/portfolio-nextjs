@@ -14,7 +14,7 @@ export default function Projects() {
             id="projects"
             display={'flex'}
             width='100%'
-            spacing={3}
+            // spacing={3}
             alignItems={'center'}
             justifyContent={'space-around'}
         >

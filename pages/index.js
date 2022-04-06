@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 import Projects from '../containers/Projects'
 import NavBar from '../containers/NavBar'
 import Contact from '../containers/Contact'
+import { CssBaseline } from '@mui/material'
 
 const Spacer = styled('div')`
   width: 85%;
@@ -18,7 +19,7 @@ export default function Home() {
 
 
   return (
-    <>
+    <CssBaseline>
       <div className={styles.container}>
         <Head>
           <meta charSet="UTF-8" />
@@ -40,6 +41,6 @@ export default function Home() {
 
       </div>
       <Footer />
-    </>
+    </CssBaseline>
   )
 }
