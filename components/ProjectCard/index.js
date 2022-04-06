@@ -74,10 +74,13 @@ const FlipCard = styled(Grid)`
   background: transparent;
   position: relative;
   display: flex;
-  height: 400px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 760px) {
+    width: 100vw;  
+    margin: 0;
+}
   @media (min-width: 900px) {
       width: 90%;
       margin: 0 auto auto auto;
@@ -85,8 +88,8 @@ const FlipCard = styled(Grid)`
   @media (min-width: 1200px) {
       width: 80%;
       margin: 0 auto auto auto;
-
   }
+
 `
 
 const FlipCardInner = styled(motion.div)`
@@ -104,8 +107,9 @@ const CardImg = styled('img')`
     border-radius: 8px;
     transition: all .3s;
     margin: 0 auto;
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
         width: 100%;  
+        margin: 0;
     }
 `
 
@@ -214,6 +218,9 @@ export default function ProjectCard(props) {
             md={6}
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
+            style={{
+                height: width > 900 ? width / 3 : width - 150
+            }}
         >
             <TitleText
                 animate={{
