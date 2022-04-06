@@ -19,7 +19,7 @@ export default function Home() {
 
 
   return (
-    <CssBaseline>
+    <>
       <div className={styles.container}>
         <Head>
           <meta charSet="UTF-8" />
@@ -41,6 +41,6 @@ export default function Home() {
 
       </div>
       <Footer />
-    </CssBaseline>
+    </>
   )
 }
