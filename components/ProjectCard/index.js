@@ -143,11 +143,12 @@ const ViewButton = styled(motion.button)`
     aspect-ratio: 1/1;
     font-weight: 700;
     font-family: 'Lobster', cursive;
-    transition: all .1s ease-in-out;
     background: red;
     color: white;
     border: .4rem solid red;
     z-index: 110;
+    backface-visibility: hidden;
+
 `
 
 const ChipBox = styled(motion.div)`
@@ -231,7 +232,8 @@ export default function ProjectCard(props) {
                         ref={viewBtnRef}
                         animate={{
                             boxShadow: hoverState ? '-4px 4px 10px rgba(50, 50, 50, .5)' : '0px 0px 0px rgba(0, 0, 0, 0)',
-                            transform: hoverState ? 'scale(1.2)' : 'scale(1)'
+                            transform: hoverState ? 'scale(1.2)' : 'scale(1)',
+                            opacity: frontView ? 1 : 0
                         }}
                     >
                         More<br />Info

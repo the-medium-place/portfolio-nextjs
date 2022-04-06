@@ -57,7 +57,6 @@ const TextBubble = styled.div`
     }
     `;
 
-console.log(styles)
 export default function Hero() {
 
     const heroRef = useRef(null)
@@ -153,7 +152,10 @@ export default function Hero() {
                                         height: '100%',
                                         width: '10%',
                                         display: 'flex',
-                                        flexDirection: 'column', justifyContent: 'center', transformStyle: 'preserve-3d', perspective: '1000px',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        transformStyle: 'preserve-3d',
+                                        perspective: '1000px',
                                         overflow: 'hidden'
                                     }}
                                 >
