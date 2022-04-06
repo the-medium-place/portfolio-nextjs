@@ -104,7 +104,7 @@ const CardImg = styled('img')`
     border-radius: 8px;
     transition: all .3s;
     margin: 0 auto;
-    @media (max-width: 900px) {
+    @media (max-width: 760px) {
         width: 100%;  
     }
 `
