@@ -104,6 +104,9 @@ const CardImg = styled('img')`
     border-radius: 8px;
     transition: all .3s;
     margin: 0 auto;
+    @media (max-width: 900px) {
+        width: 100%;  
+    }
 `
 
 const TitleText = styled(motion.p)`
@@ -248,7 +251,7 @@ export default function ProjectCard(props) {
                                     key={tech}
                                     label={tech}
                                     avatar={<Avatar alt={tech} src={fetchAvatar(tech)} />}
-                                    style={{ margin: width > 1200 ? 1.3 : .8, fontSize: width > 1200 ? '.7em' : '.4em', background: "#ededed" }}
+                                    style={{ margin: width > 1200 ? 1.3 : .8, fontSize: width > 1200 ? '.7em' : width > 900 ? '.4em' : '.2em', background: "#ededed" }}
                                 />
                             )
                         })}
