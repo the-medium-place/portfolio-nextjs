@@ -206,7 +206,7 @@ export default function ProjectCard(props) {
         <FlipCard
             item
             id={id}
-            sm={12}
+            xs={12}
             md={6}
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
@@ -214,7 +214,6 @@ export default function ProjectCard(props) {
             <TitleText
                 animate={{
                     opacity: frontView && hoverState ? 1 : 0,
-                    // background: `rgba(50, 50, 50, ${hoverState ? '.9' : '.4'})`
                 }}
             >
                 {title}
