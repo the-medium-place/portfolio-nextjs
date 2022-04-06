@@ -219,7 +219,7 @@ export default function ProjectCard(props) {
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
             style={{
-                height: width > 900 ? width / 3 : width - 150
+                height: !width ? 450 : width > 900 ? width / 3 : width - 150
             }}
         >
             <TitleText

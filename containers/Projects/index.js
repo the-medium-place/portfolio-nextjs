@@ -15,12 +15,12 @@ export default function Projects() {
 
     return (
         <>
-            <Header>Projects</Header>
+            <Header>I made these</Header>
             <Grid
                 container
                 id="projects"
                 display={'flex'}
-                width='95vw'
+                width='85vw'
                 padding=".2rem"
                 // spacing={3}
                 alignItems={'center'}
