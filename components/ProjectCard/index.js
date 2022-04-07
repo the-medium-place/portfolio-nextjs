@@ -106,12 +106,11 @@ transform: rotateY(180deg);
 
 const CardImg = styled('img')`
     width: 80%;
-    height: 80%;
     border-radius: 8px;
     transition: all .3s;
     margin: 0 auto;
     @media (max-width: 900px) {
-        width: 70%;  
+        width: 80%;  
         margin: 0 auto;
     }
 `
