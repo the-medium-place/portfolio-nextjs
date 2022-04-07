@@ -133,7 +133,7 @@ export default function Hero() {
 
                         {
                             devName ? (
-                                <TextBubble contentEditable>
+                                <TextBubble>
                                     {devName}!
                                 </TextBubble>
                             ) : null

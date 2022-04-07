@@ -18,6 +18,7 @@ import logosequelize from '../../public/images/devlogos/logosequelize.png';
 import logoGraphQL from '../../public/images/devlogos/logoGraphQL.png';
 import logoBootstrap from '../../public/images/devlogos/logoBootstrap.png';
 
+
 function fetchAvatar(tech) {
     // console.log("Avatar: ", tech)
     switch (tech) {
