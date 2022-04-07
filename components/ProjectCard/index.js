@@ -65,7 +65,8 @@ const StyledCardFace = styled(motion.div)`
 const StyledCardBack = styled(StyledCardFace)`
   transform: rotateY(180deg);
   position: absolute;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   height: 100%;
 `
 
@@ -79,8 +80,9 @@ const FlipCard = styled(Grid)`
   align-items: center;
   justify-content: center;
   @media (max-width: 760px) {
-    width: 100vw;  
-    margin: 0;
+    width: 50vw;  
+    margin: 0 auto;
+    height: 325px;
 }
   @media (min-width: 900px) {
       width: 90%;
@@ -109,8 +111,8 @@ const CardImg = styled('img')`
     transition: all .3s;
     margin: 0 auto;
     @media (max-width: 900px) {
-        width: 100%;  
-        margin: 0;
+        width: 70%;  
+        margin: 0 auto;
     }
 `
 
@@ -154,7 +156,7 @@ const ViewButton = styled(motion.button)`
     background: red;
     color: white;
     border: .4rem solid red;
-    z-index: 110;
+    z-index: 1000;
     backface-visibility: hidden;
 
 `
@@ -196,6 +198,7 @@ export default function ProjectCard(props) {
     const [hoverState, setHoverState] = useState(false)
 
     useEffect(() => {
+        console.log({ width })
         cardRef.current.focus();
         viewBtnRef.current.focus();
     })
@@ -220,7 +223,8 @@ export default function ProjectCard(props) {
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
             style={{
-                height: !width ? 450 : width > 900 ? width / 3 : width - 150
+                height: !width ? 325 : width > 970 ? width / 3.7 : width > 900 ? width / 3 : width > 760 ? width / 2 : 325,
+
             }}
         >
             <TitleText
@@ -266,11 +270,11 @@ export default function ProjectCard(props) {
                     </ChipBox>
                 </StyledCardFace>
                 <StyledCardBack>
-                    <Box padding=".3rem" display="flex" flexDirection={`column`} maxHeight={`100%`} overflowY='auto' >
+                    <Box padding=".3rem" display="flex" flexDirection={`column`} maxHeight={`100%`} overflowY='auto' justifyContent="flex-start">
                         <TaglineText>
                             {tagline}
                         </TaglineText>
-                        <p style={{ lineHeight: '1.2rem' }}>
+                        <p style={{ lineHeight: '1.2rem', maxHeight: 145, overflow: 'auto', padding: '.4rem' }}>
                             {description}
                         </p>
                         <hr style={{ width: '100%' }} />
@@ -290,8 +294,8 @@ export default function ProjectCard(props) {
                                 Git Repo
                             </StyledButton>
                         </ButtonGroup>
+                        <Button variant='contained' color="info" style={{ zIndex: 110, fontWeight: 900, marginTop: '3%', width: '85%', margin: '10px auto' }} onClick={() => { setFrontView(!frontView) }}>&larr; Return</Button>
                     </Box>
-                    <Button variant='contained' color="info" style={{ zIndex: 110, fontWeight: 900, marginTop: '3%', width: '85%', margin: '10px auto' }} onClick={() => { setFrontView(!frontView) }}>&larr; Return</Button>
                 </StyledCardBack>
             </FlipCardInner>
         </FlipCard>

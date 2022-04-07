@@ -29,7 +29,7 @@ const NavContentWrapper = styled.div`
 const NavLogoWrapper = styled.div`
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 font-size: 200%;
     width: 15%;
     height: 100%;
@@ -225,11 +225,12 @@ export default function NavBar() {
                                         color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
                                     }}
                                 >
-                                    Contact
+                                    Contact Me
                                 </StyledLink>
                             </StyledLI>
                             <StyledLI>
-                                Resumé&nbsp;|&nbsp;
+                                Resumé&nbsp;:&nbsp;
+                                <br />
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
 
@@ -241,7 +242,7 @@ export default function NavBar() {
                                 >
                                     View
                                 </StyledLink>
-                                &nbsp;-&nbsp;
+                                &nbsp;|&nbsp;
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
 
