@@ -17,6 +17,8 @@ import logoreact from '../../public/images/devlogos/logoreact.png';
 import logosequelize from '../../public/images/devlogos/logosequelize.png';
 import logoGraphQL from '../../public/images/devlogos/logoGraphQL.png';
 import logoBootstrap from '../../public/images/devlogos/logoBootstrap.png';
+import nextJsLogo from '../../public/images/devlogos/nextJsLogo.png'
+import CRAlogo from '../../public/images/devlogos/CRAlogo.svg'
 
 
 function fetchAvatar(tech) {
@@ -42,6 +44,10 @@ function fetchAvatar(tech) {
             return logoGraphQL.src;
         case 'Bootstrap':
             return logoBootstrap.src;
+        case 'NextJS':
+            return nextJsLogo.src;
+        case 'create-react-app':
+            return CRAlogo.src;
         default:
             return tech[0];
     }
@@ -79,22 +85,23 @@ const FlipCard = styled(Grid)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media (max-width: 760px) {
+  height: 55vw;
+  @media (min-width: 700px) {
     width: 50vw;  
     margin: 0 auto;
-    height: 325px;
+    height: 50vw;
 }
   @media (min-width: 900px) {
       width: 90%;
       margin: 0 auto auto auto;
+      height:30vw;
   }
   @media (min-width: 1200px) {
-      width: 80%;
-      margin: 0 auto auto auto;
+      width: 100%;
+      height: 30vw;
   }
-
 `
-
+//height: !width ? 325 : width > 970 ? width / 3.7 : width > 900 ? width / 3 : width > 730 ? width / 2 : 325,
 const FlipCardInner = styled(motion.div)`
 position: absolute;
 width: 100%;
@@ -103,6 +110,7 @@ transition: transform 0.3s;
 transform-style: preserve-3d;
 transform: rotateY(180deg);
 `
+
 
 const CardImg = styled('img')`
     width: 80%;
@@ -221,10 +229,6 @@ export default function ProjectCard(props) {
             md={6}
             onMouseEnter={handleHoverStart}
             onMouseLeave={handleHoverEnd}
-            style={{
-                height: !width ? 325 : width > 970 ? width / 3.7 : width > 900 ? width / 3 : width > 760 ? width / 2 : 325,
-
-            }}
         >
             <TitleText
                 animate={{

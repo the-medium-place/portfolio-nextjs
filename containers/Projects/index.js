@@ -14,15 +14,14 @@ export default function Projects() {
 
 
     return (
-        <>
+        <div id="projects" >
             <Header>I made these</Header>
             <Grid
                 container
-                id="projects"
+
                 display={'flex'}
                 width='85vw'
                 padding=".2rem"
-                // spacing={3}
                 alignItems={'center'}
                 justifyContent={'space-around'}
             >
@@ -33,6 +32,6 @@ export default function Projects() {
                     )
                 })}
             </Grid>
-        </>
+        </div>
     )
 }

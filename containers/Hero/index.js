@@ -57,6 +57,14 @@ const TextBubble = styled.div`
     }
     `;
 
+const DevImg = styled(motion.img)`
+        width: 100%;
+        transition: all .1s linear;
+        &:hover {
+            filter: drop-shadow(0px 0px 5px #ededed)
+        }
+    `
+
 export default function Hero() {
 
     const heroRef = useRef(null)
@@ -141,7 +149,7 @@ export default function Hero() {
                     </Grid>
 
                 </Grid>
-                <div style={{ width: '100%' }}>
+                <div style={{ width: '100%', zIndex: 150, padding: '1rem 0' }}>
 
 
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -156,10 +164,16 @@ export default function Hero() {
                                         justifyContent: 'center',
                                         transformStyle: 'preserve-3d',
                                         perspective: '1000px',
-                                        overflow: 'hidden'
+                                        overflow: 'hidden',
+                                        padding: '.5rem'
                                     }}
                                 >
-                                    <img src={img.image.src} name={img.name} onMouseEnter={handleLogoHover} onMouseLeave={handleLogoLeave} style={{ width: '100%', }} />
+                                    <DevImg
+                                        src={img.image.src}
+                                        name={img.name}
+                                        onMouseEnter={handleLogoHover}
+                                        onMouseLeave={handleLogoLeave}
+                                    />
                                 </div>
                             )
                         })}

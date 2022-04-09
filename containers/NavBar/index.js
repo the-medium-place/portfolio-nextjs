@@ -1,20 +1,22 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import styled from '@emotion/styled'
 import { motion, useViewportScroll } from 'framer-motion'
 import MenuIcon from '@mui/icons-material/Menu';
+import LunchDiningSharpIcon from '@mui/icons-material/LunchDiningSharp';
 import useWindowDimensions from '../../utils/hooks/WindowDimensions';
+
 
 
 const Nav = styled(motion.nav)(() => [
     `
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
     display: block;
     top: 0;
     height: 45px;
     margin: 0 auto;
-    z-index: 100;
-    padding: .6rem 1.2rem .6rem .6rem;
+    z-index: 1000;
+    padding: .6rem;
     `
 ])
 
@@ -27,22 +29,31 @@ const NavContentWrapper = styled.div`
 `
 
 const NavLogoWrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: flex-start;
-font-size: 200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
     width: 15%;
     height: 100%;
     padding: .6rem;
 `
 
 const NavLinkWrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-    width: 70%;
     height: 100%;
+    width:70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     padding: .6rem;
+    @media (max-width: 1000px) {
+        display:none;
+    }
+`
+
+const MobileLinkWrapper = styled(motion.div)`
+@media (min-width:999px) {
+    display:none;
+}
 `
 
 const LinkUL = styled.ul`
@@ -63,10 +74,11 @@ const DropdownUL = styled(motion.ul)`
     text-align: center;
     width: 100%;
 
+
 `
 
 const StyledLink = styled(motion.a)`
-    
+
 `
 
 const StyledLI = styled(motion.li)`
@@ -86,34 +98,40 @@ const StyledLI = styled(motion.li)`
 `
 
 const DropdownWrapper = styled(motion.div)`
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-background: #ededed;
-display: flex;
-color: rgb(50,50,50);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ededed;
+    display: flex;
+    color: rgb(50,50,50);
+    z-index:999;
 `
 
 export default function NavBar() {
 
 
-    const { scrollYProgress } = useViewportScroll();
     const { width, height } = useWindowDimensions();
+
+    // const percentY = y ? Math.round(((y / (height)) * 100)) : 0;
+    const { scrollYProgress } = useViewportScroll();
 
     const [scrollState, setScrollState] = useState();
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
+        console.log('testing intitial width: ', { width })
+        // scrollBarRef.current.focus()
+
         scrollYProgress.onChange(x => {
-            setScrollState(Math.floor(x * 100))
+            setScrollState(Math.ceil(x * 100))
+
         })
         if (width > 1000) { setMenuOpen(false) }
-    })
+    }, [width])
 
     return (
         <>
-
             <Nav
                 animate={{
                     position: scrollState > 12 ? 'fixed' : 'absolute',
@@ -126,88 +144,14 @@ export default function NavBar() {
                     <NavLogoWrapper>
                         <h1>{`<ZGS>`}</h1>
                     </NavLogoWrapper>
-                    {width > 1000 ? (
-                        <NavLinkWrapper>
-                            <LinkUL>
-                                <li>About</li>
+                    {/* {width > 1000 ? ( */}
+                    <NavLinkWrapper>
+                        <LinkUL>
+                            <li>About</li>
 
-                                <li>
-                                    <StyledLink
-                                        onClick={() => setMenuOpen(false)}
-                                        animate={{
-                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
-                                        }}
-                                        href="#projects"
-                                    >
-                                        Projects
-                                    </StyledLink>
-                                </li>
-                                <li>
-                                    <StyledLink
-                                        onClick={() => setMenuOpen(false)}
-
-                                        href="#contact"
-                                        animate={{
-                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
-                                        }}
-                                    >
-                                        Contact
-                                    </StyledLink>
-                                </li>
-                                <li>
-                                    Resumé&nbsp;|&nbsp;
-                                    <StyledLink
-                                        onClick={() => setMenuOpen(false)}
-
-                                        href="ZacStowellResume.pdf"
-                                        target="_blank"
-                                        animate={{
-                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
-                                        }}
-                                    >
-                                        View
-                                    </StyledLink>
-                                    &nbsp;-&nbsp;
-                                    <StyledLink
-                                        onClick={() => setMenuOpen(false)}
-
-                                        href="ZacStowellResume.pdf"
-                                        download
-                                        animate={{
-                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
-                                        }}
-                                    >
-                                        Download
-                                    </StyledLink>
-                                </li>
-
-                            </LinkUL>
-                        </NavLinkWrapper>
-                    ) : (
-                        <div
-                            style={{
-                                position: 'relative',
-                            }}
-                        >
-                            <MenuIcon
-                                onClick={() => setMenuOpen(!menuOpen)}
-                            />
-
-
-                        </div>
-                    )}
-                    <DropdownWrapper
-                        animate={{
-                            transform: menuOpen ? 'translateY(60px)' : 'translateY(-100%)'
-                        }}
-                    >
-                        <DropdownUL>
-                            <StyledLI>About</StyledLI>
-
-                            <StyledLI>
+                            <li>
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
-
                                     animate={{
                                         color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
                                     }}
@@ -215,8 +159,8 @@ export default function NavBar() {
                                 >
                                     Projects
                                 </StyledLink>
-                            </StyledLI>
-                            <StyledLI>
+                            </li>
+                            <li>
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
 
@@ -225,12 +169,11 @@ export default function NavBar() {
                                         color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
                                     }}
                                 >
-                                    Contact Me
+                                    Contact
                                 </StyledLink>
-                            </StyledLI>
-                            <StyledLI>
-                                Resumé&nbsp;:&nbsp;
-                                <br />
+                            </li>
+                            <li>
+                                Resumé&nbsp;|&nbsp;
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
 
@@ -242,7 +185,7 @@ export default function NavBar() {
                                 >
                                     View
                                 </StyledLink>
-                                &nbsp;|&nbsp;
+                                &nbsp;-&nbsp;
                                 <StyledLink
                                     onClick={() => setMenuOpen(false)}
 
@@ -254,10 +197,90 @@ export default function NavBar() {
                                 >
                                     Download
                                 </StyledLink>
-                            </StyledLI>
+                            </li>
 
-                        </DropdownUL>
-                    </DropdownWrapper>
+                        </LinkUL>
+                    </NavLinkWrapper>
+                    {/* ) : ( */}
+                    <MobileLinkWrapper>
+                        <LunchDiningSharpIcon onClick={() => setMenuOpen(!menuOpen)} />
+                        {/* <MenuIcon
+                            onClick={() => setMenuOpen(!menuOpen)}
+                        /> 
+                        */}
+                        <DropdownWrapper
+                            animate={{
+                                transform: menuOpen ? 'translateY(60px)' : 'translateY(-100%)'
+                            }}
+                        >
+                            <DropdownUL>
+                                <StyledLI>About</StyledLI>
+
+                                <StyledLI>
+                                    <StyledLink
+                                        onClick={() => setMenuOpen(false)}
+
+                                        animate={{
+                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
+                                        }}
+                                        href="#projects"
+                                    >
+                                        <div style={{ width: '100%', height: '100%' }}>
+
+                                            Projects
+                                        </div>
+                                    </StyledLink>
+                                </StyledLI>
+                                <StyledLI>
+                                    <StyledLink
+                                        onClick={() => setMenuOpen(false)}
+
+                                        href="#contact"
+                                        animate={{
+                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
+                                        }}
+                                    >
+                                        <div style={{ width: '100%', height: '100%' }}>
+                                            Contact Me
+                                        </div>
+                                    </StyledLink>
+                                </StyledLI>
+                                <StyledLI>
+                                    Resumé&nbsp;:&nbsp;
+                                    <br />
+                                    <StyledLink
+                                        onClick={() => setMenuOpen(false)}
+
+                                        href="ZacStowellResume.pdf"
+                                        target="_blank"
+                                        animate={{
+                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
+                                        }}
+                                    >
+                                        View
+                                    </StyledLink>
+                                    &nbsp;|&nbsp;
+                                    <StyledLink
+                                        onClick={() => setMenuOpen(false)}
+
+                                        href="ZacStowellResume.pdf"
+                                        download
+                                        animate={{
+                                            color: scrollState > 12 || menuOpen ? 'rgb(50,50,50)' : '#ededed'
+                                        }}
+                                    >
+                                        Download
+                                    </StyledLink>
+                                </StyledLI>
+                                <StyledLI onClick={() => setMenuOpen(false)}>
+                                    Close
+                                </StyledLI>
+
+                            </DropdownUL>
+                        </DropdownWrapper>
+                    </MobileLinkWrapper>
+                    {/* )} */}
+
                 </NavContentWrapper>
                 {menuOpen ? (
                     <Overlay setMenuOpen={setMenuOpen} />

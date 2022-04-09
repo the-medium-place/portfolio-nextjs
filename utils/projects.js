@@ -71,7 +71,7 @@ const projects = [
     title: "BCS Data Viewer",
     tagline: "Made for the teachers...",
     screenshot: "https://i.imgur.com/AljzAOJ.png",
-    technologies: ['Node.js', 'Express JS', 'React JS', 'MongoDB', 'Mongoose', 'GraphQL', 'Bootstrap']
+    technologies: ['Node.js', 'Express JS', 'React JS', 'MongoDB', 'Mongoose', 'GraphQL', 'Bootstrap', 'create-react-app']
   },
 
   {
@@ -83,7 +83,7 @@ const projects = [
     title: "Mark-It",
     tagline: "Farm-to-market-to-internet-database...",
     screenshot: 'https://i.imgur.com/rcTeF3S.jpg',
-    technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'Bulma CSS']
+    technologies: ['Node.js', 'Express JS', 'React JS', 'Sequelize', 'MySQL', 'Bulma CSS', 'create-react-app']
 
   },
   // {
@@ -109,16 +109,26 @@ const projects = [
   // technologies: "'Node.js', 'Express JS', 'React JS', 'CSS3'"
 
   // }
-  {
-    id: "togather",
-    github: "https://github.com/the-medium-place/group-planner",
-    deployed: "http://awesome-group-planner.herokuapp.com/",
-    description: "This application allows multiple users to collaborate on multiple events. It utilizes a 'Sequelize'  'MySQL',database to store all relevant data and allows the user to view, edit, and delete user information (full CRUD functionality!). Multiple users can collaborate on multiple projects or events, while keeping track of event specific tasks and expenditures. This was a one-week collaborative project with a team of four, for which I acted as Project Manager",
-    title: "To-Gather",
-    tagline: "Get people together, Help them ToGather...",
-    screenshot: 'https://i.imgur.com/tj8sCI5.jpg',
-    technologies: ['Node.js', 'Sequelize', 'MySQL', 'Handlebars JS', 'Express JS', 'Foundation CSS']
+  // {
+  //   id: "togather",
+  //   github: "https://github.com/the-medium-place/group-planner",
+  //   deployed: "http://awesome-group-planner.herokuapp.com/",
+  //   description: "This application allows multiple users to collaborate on multiple events. It utilizes a 'Sequelize'  'MySQL',database to store all relevant data and allows the user to view, edit, and delete user information (full CRUD functionality!). Multiple users can collaborate on multiple projects or events, while keeping track of event specific tasks and expenditures. This was a one-week collaborative project with a team of four, for which I acted as Project Manager",
+  //   title: "To-Gather",
+  //   tagline: "Get people together, Help them ToGather...",
+  //   screenshot: 'https://i.imgur.com/tj8sCI5.jpg',
+  //   technologies: ['Node.js', 'Sequelize', 'MySQL', 'Handlebars JS', 'Express JS', 'Foundation CSS']
 
+  // },
+  {
+    id: 'nextJS-portfolio',
+    github: "https://github.com/the-medium-place/portfolio-nextjs",
+    deployed: 'https://nextjs-zgs-portfolio.herokuapp.com/',
+    description: "This portfolio (yes, the one you're looking at right now!) was built using React/NextJS. Most of the animations are achieved with 'framer-motion'. I'm no designer, but I'm fairly proud of how it turned out!",
+    title: 'Zac Stowell Codes',
+    tagline: "You're already here, might as well take a look inside...",
+    screenshot: 'http://placekitten.com/700/500',
+    technologies: ['Node.js', 'React JS', 'NextJS', 'MUI', 'Framer-Motion']
   },
   // {
   //   id: "googlebooks",

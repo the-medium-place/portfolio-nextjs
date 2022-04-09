@@ -1,3 +1,4 @@
+
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Footer from '../containers/Footer'
@@ -6,7 +7,8 @@ import styled from '@emotion/styled'
 import Projects from '../containers/Projects'
 import NavBar from '../containers/NavBar'
 import Contact from '../containers/Contact'
-import { CssBaseline } from '@mui/material'
+import ScrollBar from '../components/ScrollBar'
+
 
 const Spacer = styled('div')`
   width: 85%;
@@ -16,6 +18,7 @@ const Spacer = styled('div')`
 
 
 export default function Home() {
+
 
 
   return (
@@ -28,6 +31,7 @@ export default function Home() {
           <title>Zac Stowell Codes</title>
         </Head>
         <main className={styles.main}>
+          <ScrollBar />
           <NavBar />
           <Hero id="hero" />
           <Spacer />
