@@ -105,7 +105,7 @@ const DropdownWrapper = styled(motion.div)`
     background: #ededed;
     display: flex;
     color: rgb(50,50,50);
-    z-index:999;
+    z-index:500;
 `
 
 export default function NavBar() {
@@ -144,7 +144,6 @@ export default function NavBar() {
                     <NavLogoWrapper>
                         <h1>{`<ZGS>`}</h1>
                     </NavLogoWrapper>
-                    {/* {width > 1000 ? ( */}
                     <NavLinkWrapper>
                         <LinkUL>
                             <li>About</li>
@@ -201,7 +200,6 @@ export default function NavBar() {
 
                         </LinkUL>
                     </NavLinkWrapper>
-                    {/* ) : ( */}
                     <MobileLinkWrapper>
                         <LunchDiningSharpIcon onClick={() => setMenuOpen(!menuOpen)} />
                         {/* <MenuIcon
@@ -210,7 +208,12 @@ export default function NavBar() {
                         */}
                         <DropdownWrapper
                             animate={{
-                                transform: menuOpen ? 'translateY(60px)' : 'translateY(-100%)'
+                                // transform: menuOpen ? 'translateY(60px)' : 'translateY(-100%)'
+                                top: menuOpen ? 60 : -1000
+                            }}
+                            transition={{
+                                duration: .6,
+                                ease: 'circInOut'
                             }}
                         >
                             <DropdownUL>
@@ -279,8 +282,6 @@ export default function NavBar() {
                             </DropdownUL>
                         </DropdownWrapper>
                     </MobileLinkWrapper>
-                    {/* )} */}
-
                 </NavContentWrapper>
                 {menuOpen ? (
                     <Overlay setMenuOpen={setMenuOpen} />

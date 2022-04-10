@@ -135,6 +135,12 @@ const TitleText = styled(motion.p)`
     color: rgb(50,50,50);
     border-radius: 5px;
     transition: opacity .3s;
+    @media (max-width: 1000px) {
+        font-size: 1rem;
+    }
+    @media (max-width: 900px) {
+        font-size: .8rem;
+    }
 `
 
 const TaglineText = styled(motion.p)`
