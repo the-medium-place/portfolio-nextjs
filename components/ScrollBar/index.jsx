@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
-import styled from '@emotion/styled'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, useViewportScroll } from 'framer-motion'
 import useMousePosition from '../../utils/hooks/MousePosition';
 
@@ -19,16 +18,13 @@ export default function ScrollBar() {
 
 
     useEffect(() => {
-        // console.log('testing intitial width: ', { width })
-        // scrollBarRef.current.focus()
-
         scrollYProgress.onChange(x => {
             setScrollState(Math.ceil(x * 100))
             setIsComplete(Math.ceil(x * 100) > 99)
             setProgressIsVisible(true)
+
             setTimeout(() => {
                 setProgressIsVisible(false)
-
             }, 3000);
 
         })

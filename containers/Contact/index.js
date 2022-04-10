@@ -19,11 +19,15 @@ const SectionWrapper = styled(motion.div)`
 
 const ContactWrapper = styled(motion.div)`
     padding: .6rem;
-    width: 70%;
+    width: 40%;
     margin: .2rem;
     display: flex;
     flex-direction: column;
     align-items:center;
+    justify-content: center;
+    @media (max-width: 760px) {
+        width: 70%;
+    }
 
 `
 
@@ -59,48 +63,50 @@ text-align: center;
 `
 
 const QRImg = styled(motion.img)`
-height: 100%;
+width: 50%;
+@media (max-width: 760px) {
+    width: 80%;
+}
 `
 
 const ContactContainer = styled(motion.div)`
-    width: 48%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    @media (max-width: 900px) {
-        width: 100%;
-    }
+    justify-content: center;
 `
 
 const Header = styled(motion.h1)`
  font-size: 200%;
  text-align: center;
+ margin: 1rem;
 `
 
 const CONTENT = [
     {
-        text: 'Email',
-        href: 'email:zgstowell@gmail.com',
+        text: 'Email Me!',
+        href: 'mailto:zgstowell@gmail.com',
         Icon: ContactMailIcon,
         name: "zgstowell@gmail.com"
 
     },
     {
-        text: 'Phone',
+        text: 'Call/Text Me!',
         href: 'tel:5035071351',
         Icon: ContactPhoneIcon,
         name: "(503) 507-1351"
 
     },
     {
-        text: 'the-medium-place',
+        text: 'Follow me on GitHub!',
         href: 'https://github.com/the-medium-place',
         Icon: GitHubIcon,
-        name: "GitHub"
+        name: "the-medium-place"
 
     },
     {
-        text: 'Zachary Stowell',
+        text: 'Connect on LinkedIn!',
         href: 'https://www.linkedin.com/in/zachary-stowell/',
         Icon: LinkedInIcon,
         name: "LinkedIn"
@@ -111,30 +117,8 @@ const CONTENT = [
 export default function Contact() {
     return (
         <SectionWrapper id="contact">
-            <Header
-
-            >Reach Out!
-                <br />
-                <motion.div
-                    style={{
-                        width: '100%',
-                        margin: 0,
-                    }}
-                    initial={{
-                        border: '0px solid #ededed'
-                        // opacity: 0
-                    }}
-                    animate={{
-                        border: '3px solid #ededed'
-                        // opacity: 1
-                    }}
-                    transition={{
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                        duration: 2
-                    }}
-
-                />
+            <Header>
+                Reach Out!
             </Header>
             <ContactContainer>
                 {CONTENT.map(obj => {
@@ -148,6 +132,7 @@ export default function Contact() {
                                 <ContactButton
                                     href={obj.href}
                                     endIcon={<obj.Icon />}
+                                    target="_blank"
                                 >
                                     {obj.name}
                                 </ContactButton>
@@ -159,7 +144,7 @@ export default function Contact() {
             </ContactContainer>
             <QRWrapper>
                 <QRHeader >
-                    Scan to View/Save my info!
+                    Save Me!
                 </QRHeader>
                 <QRImg
                     src={saveContact.src}

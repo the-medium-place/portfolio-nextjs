@@ -156,6 +156,7 @@ export default function Hero() {
                         {devLogos.map((img) => {
                             return (
                                 <div
+                                    key={img.image.name}
                                     style={{
                                         height: '100%',
                                         width: '10%',
